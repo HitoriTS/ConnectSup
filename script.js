@@ -1,64 +1,52 @@
-const form = document.getElementById("ticketForm");
-const listaChamados = document.getElementById("listaChamados");
-
-let chamados = JSON.parse(localStorage.getItem("chamados")) || [];
-
-// ----- FUNÇÃO: ALTERAR STATUS -----
-function alterarStatus(i) {
-  chamados[i].status = "Concluído";
-  localStorage.setItem("chamados", JSON.stringify(chamados));
-  renderizarChamados();
-}
-
-// ----- FUNÇÃO: ARQUIVAR CHAMADO -----
-function arquivarChamado(i) {
-  if (confirm("Tem certeza que deseja arquivar este chamado?")) {
-    chamados[i].status = "Arquivado";
-    localStorage.setItem("chamados", JSON.stringify(chamados));
-    renderizarChamados();
-  }
-}
-
-// ----- FUNÇÃO: RENDERIZAR CHAMADOS -----
-function renderizarChamados() {
-  listaChamados.innerHTML = "";
-  chamados.forEach((c, i) => {
-    if (c.status !== "Arquivado") { // só mostra chamados ativos
-      const div = document.createElement("div");
-      div.classList.add("ticket");
-      div.innerHTML = `
-        <strong>${c.empresa}</strong> → ${c.fornecedor}<br>
-        <em>${c.descricao}</em><br>
-        <small>Status: ${c.status}</small><br>
-        <button onclick="alterarStatus(${i})">✔ Concluir</button>
-        <button onclick="arquivarChamado(${i})" style="background-color:#c10000; margin-left:5px;">✖ Arquivar</button>
-      `;
-      listaChamados.appendChild(div);
-    }
+// Login simulado
+const loginForm = document.getElementById("loginForm");
+if (loginForm) {
+  loginForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = document.getElementById("email").value;
+    const senha = document.getElementById("senha").value;
+    // Salva usuário no localStorage
+    localStorage.setItem("usuario", JSON.stringify({ email }));
+    window.location.href = "dashboard.html";
   });
 }
 
-// ----- FUNÇÃO: ADICIONAR NOVO CHAMADO -----
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
+// Logout
+function logout() {
+  localStorage.removeItem("usuario");
+}
 
-  const empresa = document.getElementById("empresa").value;
-  const fornecedor = document.getElementById("fornecedor").value;
-  const descricao = document.getElementById("descricao").value;
+// Pedidos (Dashboard)
+const listaPedidos = document.getElementById("listaPedidos");
+const inputPedido = document.getElementById("novoPedido");
 
-  const novoChamado = {
-    empresa,
-    fornecedor,
-    descricao,
-    status: "Pendente",
-  };
+let pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
 
-  chamados.push(novoChamado);
-  localStorage.setItem("chamados", JSON.stringify(chamados));
+function renderizarPedidos() {
+  if (!listaPedidos) return;
+  listaPedidos.innerHTML = "";
+  pedidos.forEach((p, i) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      ${p}
+      <button onclick="deletarPedido(${i})">Deletar</button>
+    `;
+    listaPedidos.appendChild(li);
+  });
+}
 
-  form.reset();
-  renderizarChamados();
-});
+function adicionarPedido() {
+  if (!inputPedido.value) return;
+  pedidos.push(inputPedido.value);
+  localStorage.setItem("pedidos", JSON.stringify(pedidos));
+  inputPedido.value = "";
+  renderizarPedidos();
+}
 
-// ----- INICIALIZAÇÃO -----
-renderizarChamados();
+function deletarPedido(i) {
+  pedidos.splice(i, 1);
+  localStorage.setItem("pedidos", JSON.stringify(pedidos));
+  renderizarPedidos();
+}
+
+renderizarPedidos();
