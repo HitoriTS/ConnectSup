@@ -1,0 +1,10 @@
+{
+  "empresas": [
+    { "id": 1, "nome": "MoveisLux", "setor": "Móveis Planejados" },
+    { "id": 2, "nome": "Construmade", "setor": "Madeiras e Ferragens" }
+  ],
+  "fornecedores": [
+    { "id": 1, "nome": "MadeirasSul", "material": "MDF e Compensados" },
+    { "id": 2, "nome": "MetalPrime", "material": "Dobradiças e Trilhos" }
+  ]
+}
