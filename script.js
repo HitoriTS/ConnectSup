@@ -11,25 +11,22 @@ function renderizarChamados() {
     div.innerHTML = `
       <strong>${c.empresa}</strong> → ${c.fornecedor}<br>
       <em>${c.descricao}</em><br>
-      <small>Status: ${c.status}</small>
+      <small>Status: ${c.status}</small><br>
       <button onclick="alterarStatus(${i})">✔ Concluir</button>
+      <button onclick="deletarChamado(${i})" style="background-color:#c10000; margin-left:5px;">✖ Deletar</button>
     `;
     listaChamados.appendChild(div);
   });
 }
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const novo = {
-    empresa: form.empresa.value,
-    fornecedor: form.fornecedor.value,
-    descricao: form.descricao.value,
-    status: "Pendente"
-  };
-  chamados.push(novo);
-  localStorage.setItem("chamados", JSON.stringify(chamados));
-  form.reset();
-  renderizarChamados();
+// ----- NOVA FUNÇÃO: DELETAR CHAMADO -----
+function deletarChamado(i) {
+  if (confirm("Tem certeza que deseja deletar este chamado?")) {
+    chamados.splice(i, 1); // remove o chamado do array
+    localStorage.setItem("chamados", JSON.stringify(chamados)); // atualiza localStorage
+    renderizarChamados(); // re-renderiza a lista
+  }
+}
 });
 
 function alterarStatus(i) {
