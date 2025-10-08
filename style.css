@@ -1,86 +1,103 @@
-* {
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f0f4f8;
+  color: #333;
+}
+
+nav {
+  background: #0056b3;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-body {
-  font-family: "Segoe UI", sans-serif;
-  background: #f5f8fc;
-  color: #222;
-  padding: 20px;
-}
-
-header {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.logo {
-  width: 90px;
-  margin-bottom: 10px;
-}
-
-h1 {
-  font-size: 2rem;
-  color: #0056c1;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-}
-
-input, textarea, button {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
-}
-
-button {
-  background-color: #0056c1;
+nav a {
   color: white;
-  cursor: pointer;
-  transition: 0.3s;
-  border: none;
+  text-decoration: none;
 }
 
-button:hover {
-  background-color: #0072e6;
+nav a:hover {
+  text-decoration: underline;
 }
 
-#listaChamados {
-  margin-top: 15px;
-}
-
-.ticket {
+.login-container {
+  max-width: 350px;
+  margin: 100px auto;
+  padding: 30px;
   background: white;
-  border-left: 5px solid #0056c1;
-  padding: 12px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.ticket strong {
-  color: #003b8e;
-}
-
-footer {
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   text-align: center;
-  margin-top: 30px;
-  font-size: 0.9rem;
-  color: #666;
 }
 
-@media (max-width: 600px) {
-  form, .ticket {
-    font-size: 0.9rem;
-  }
+.login-container input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 10px;
+  background: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-container button:hover {
+  background: #003f7f;
+}
+
+.content {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+}
+
+.pedido-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.pedido-form input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.pedido-form button {
+  padding: 8px 12px;
+  background: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+ul#listaPedidos li {
+  background: #e1f0ff;
+  padding: 8px;
+  margin-bottom: 6px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
 }
