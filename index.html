@@ -1,20 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ConnectSup - Login</title>
-<link rel="stylesheet" href="style.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ConnectSup - Entrar</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="login-container">
+    <img src="assets/images/logo.png" alt="ConnectSup" class="logo-small" />
     <h1>ConnectSup</h1>
-    <form id="loginForm">
-      <input type="email" id="email" placeholder="E-mail" required>
-      <input type="password" id="senha" placeholder="Senha" required>
-      <button type="submit">Entrar</button>
-    </form>
-    <p>Não tem conta? <a href="#" onclick="abrirCadastro()">Cadastre-se</a></p>
+
+    <div class="card">
+      <h2>Entrar</h2>
+      <form id="loginForm">
+        <input type="email" id="loginEmail" placeholder="E-mail" required />
+        <input type="password" id="loginSenha" placeholder="Senha" required />
+        <button type="submit">Entrar</button>
+      </form>
+      <p class="muted">Não tem conta? <a href="#" id="showRegister">Cadastre-se</a></p>
+    </div>
+
+    <div class="card hidden" id="registerCard">
+      <h2>Cadastro</h2>
+      <form id="registerForm">
+        <input type="text" id="regNome" placeholder="Nome completo" required />
+        <input type="email" id="regEmail" placeholder="E-mail" required />
+        <input type="password" id="regSenha" placeholder="Senha" required />
+        <select id="regPlano">
+          <option value="Basico">Plano Básico</option>
+          <option value="Profissional">Plano Profissional</option>
+          <option value="Corporativo">Plano Corporativo</option>
+        </select>
+        <button type="submit">Criar conta</button>
+      </form>
+      <p class="muted"><a href="#" id="showLogin">Voltar ao login</a></p>
+    </div>
+
+    <p class="small">Conectando empresas e fornecedores com eficiência. © Marcello H. S. Barros</p>
   </div>
 
 <script src="script.js"></script>
