@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ConnectSup - Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <h1>ConnectSup</h1>
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="sobre.html">Sobre Nós</a></li>
+      <li><a href="ajuda.html">Ajuda</a></li>
+      <li><a href="index.html" onclick="logout()">Sair</a></li>
+    </ul>
+  </nav>
+
+  <div class="content">
+    <h2>Pedidos</h2>
+    <div class="pedido-form">
+      <input type="text" id="novoPedido" placeholder="Descrição do pedido">
+      <button onclick="adicionarPedido()">Adicionar</button>
+    </div>
+    <ul id="listaPedidos"></ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
