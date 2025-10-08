@@ -1,39 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ConnectSup - Sistema de Chamados Técnicos</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/png" href="assets/icons/favicon.png" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ConnectSup - Login</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <img src="assets/images/logo.png" alt="Logo ConnectSup" class="logo" />
+  <div class="login-container">
     <h1>ConnectSup</h1>
-    <p>Conectando empresas e fornecedores com eficiência e confiança.</p>
-  </header>
-
-  <main>
-    <section class="cadastro">
-      <h2>Nova Solicitação</h2>
-      <form id="ticketForm">
-        <input type="text" id="empresa" placeholder="Nome da Empresa" required />
-        <input type="text" id="fornecedor" placeholder="Fornecedor Destino" required />
-        <textarea id="descricao" placeholder="Descrição do pedido" required></textarea>
-        <button type="submit">Cadastrar Solicitação</button>
-      </form>
-    </section>
-
-    <section class="chamados">
-      <h2>Chamados Ativos</h2>
-      <div id="listaChamados"></div>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 ConnectSup — Projeto acadêmico desenvolvido por Marcello H. S. Barros.</p>
-  </footer>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="E-mail" required>
+      <input type="password" id="senha" placeholder="Senha" required>
+      <button type="submit">Entrar</button>
+    </form>
+    <p>Não tem conta? <a href="#" onclick="alert('Cadastro simulado!')">Cadastre-se</a></p>
+  </div>
 
   <script src="script.js"></script>
 </body>
