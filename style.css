@@ -1,103 +1,40 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: #f0f4f8;
-  color: #333;
+function cadastrar() {
+  const nome = document.getElementById("cadNome").value;
+  const email = document.getElementById("cadEmail").value;
+  const senha = document.getElementById("cadSenha").value;
+  const plano = document.getElementById("cadPlano").value;
+
+  if (!nome || !email || !senha) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  const existe = usuarios.find(u => u.email === email);
+
+  if (existe) {
+    alert("E-mail já cadastrado!");
+    return;
+  }
+
+  usuarios.push({ nome, email, senha, plano });
+  localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+  alert("Conta criada com sucesso!");
+  window.location.href = "index.html";
 }
 
-nav {
-  background: #0056b3;
-  color: white;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+function login() {
+  const email = document.getElementById("loginEmail").value;
+  const senha = document.getElementById("loginSenha").value;
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 15px;
-  margin: 0;
-  padding: 0;
-}
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  const user = usuarios.find(u => u.email === email && u.senha === senha);
 
-nav a {
-  color: white;
-  text-decoration: none;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-
-.login-container {
-  max-width: 350px;
-  margin: 100px auto;
-  padding: 30px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  text-align: center;
-}
-
-.login-container input {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.login-container button {
-  width: 100%;
-  padding: 10px;
-  background: #0056b3;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.login-container button:hover {
-  background: #003f7f;
-}
-
-.content {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background: white;
-  border-radius: 10px;
-}
-
-.pedido-form {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.pedido-form input {
-  flex: 1;
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.pedido-form button {
-  padding: 8px 12px;
-  background: #0056b3;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-ul#listaPedidos li {
-  background: #e1f0ff;
-  padding: 8px;
-  margin-bottom: 6px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
+  if (user) {
+    localStorage.setItem("usuarioLogado", JSON.stringify(user));
+    window.location.href = "Dashboard.html";
+  } else {
+    alert("E-mail ou senha incorretos!");
+  }
 }
