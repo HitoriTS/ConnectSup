@@ -1,40 +1,42 @@
-function cadastrar() {
-  const nome = document.getElementById("cadNome").value;
-  const email = document.getElementById("cadEmail").value;
-  const senha = document.getElementById("cadSenha").value;
-  const plano = document.getElementById("cadPlano").value;
-
-  if (!nome || !email || !senha) {
-    alert("Preencha todos os campos!");
-    return;
-  }
-
-  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-  const existe = usuarios.find(u => u.email === email);
-
-  if (existe) {
-    alert("E-mail já cadastrado!");
-    return;
-  }
-
-  usuarios.push({ nome, email, senha, plano });
-  localStorage.setItem("usuarios", JSON.stringify(usuarios));
-
-  alert("Conta criada com sucesso!");
-  window.location.href = "index.html";
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f7fa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
 }
 
-function login() {
-  const email = document.getElementById("loginEmail").value;
-  const senha = document.getElementById("loginSenha").value;
+header h1 {
+  color: #004aad;
+}
 
-  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-  const user = usuarios.find(u => u.email === email && u.senha === senha);
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  width: 320px;
+  text-align: center;
+}
 
-  if (user) {
-    localStorage.setItem("usuarioLogado", JSON.stringify(user));
-    window.location.href = "Dashboard.html";
-  } else {
-    alert("E-mail ou senha incorretos!");
-  }
+input, select, button {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  background: #004aad;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #00337a;
 }
