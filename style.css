@@ -1,100 +1,96 @@
-/* ===== ESTILO GERAL ===== */
+/* Fundo e estrutura geral */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #0a4b8b, #0e73c0);
-  color: #222;
   margin: 0;
   padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(135deg, #0a5cb5, #0c72d1);
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.container {
-  background: #fff;
-  border-radius: 15px;
-  padding: 40px;
-  width: 380px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-  text-align: center;
-}
-
-h1 {
-  color: #0a4b8b;
-  margin-bottom: 10px;
-}
-
-h2 {
-  color: #333;
-  margin-bottom: 20px;
-}
-
-input, select {
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 15px;
-}
-
-button {
-  background-color: #0a4b8b;
-  color: white;
-  border: none;
-  padding: 12px;
-  width: 100%;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-button:hover {
-  background-color: #095a9d;
-}
-
-a {
-  color: #0a4b8b;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-p {
-  margin-top: 15px;
-}
-
-/* ===== DASHBOARD ===== */
-.dashboard {
-  width: 90%;
-  max-width: 800px;
-  background: #fff;
-  border-radius: 15px;
-  padding: 25px 35px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-}
-
-nav {
+/* Cabeçalho superior */
+header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-}
-
-nav a {
-  color: #0a4b8b;
+  padding: 20px 60px;
+  color: white;
   font-weight: 600;
-  margin-right: 15px;
 }
 
-.ticket {
-  border: 1px solid #ddd;
+header .logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+header nav a {
+  color: white;
+  margin-left: 25px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+header nav a:hover {
+  opacity: 0.8;
+}
+
+/* Centralização do conteúdo principal */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Caixa central (login, cadastro, pedidos, etc.) */
+.container {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.container h2 {
+  margin-bottom: 20px;
+  color: #0a3c80;
+}
+
+.container input,
+.container select {
+  width: 100%;
   padding: 10px;
   margin: 10px 0;
-  border-radius: 10px;
-  background-color: #f7f9fb;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.container button {
+  width: 100%;
+  background-color: #0a4c9a;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.container button:hover {
+  background-color: #0c72d1;
+}
+
+.container a {
+  color: #0a4c9a;
+  text-decoration: none;
+}
+
+.container a:hover {
+  text-decoration: underline;
 }
