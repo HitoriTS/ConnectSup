@@ -1,4 +1,4 @@
-// ===== FUNÇÕES DE LOGIN E CADASTRO =====
+// ===== FUNÇÕES DE USUÁRIO =====
 function cadastrar() {
     const nome = document.getElementById("cadNome").value;
     const email = document.getElementById("cadEmail").value;
@@ -46,72 +46,7 @@ function logout() {
 }
 
 // ===== FUNÇÕES DO DASHBOARD =====
-function carregarPedidos() {
-    console.log("Carregando pedidos...");
-    
-    // Verificar se está logado
-    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
-    if (!usuario) {
-        window.location.href = "index.html";
-        return;
-    }
-
-    // Mostrar info do usuário
-    const userInfo = document.getElementById("userInfo");
-    if (userInfo) {
-        userInfo.textContent = usuario.nome;
-    }
-
-    // Carregar pedidos do localStorage
-    const pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
-    console.log("Pedidos encontrados:", pedidos);
-    
-    const filtro = document.getElementById("filterStatus").value;
-    const lista = document.getElementById("listaPedidos");
-    
-    if (!lista) {
-        console.error("Elemento listaPedidos não encontrado!");
-        return;
-    }
-    
-    // Limpar lista
-    lista.innerHTML = "";
-    
-    // Aplicar filtro
-    const pedidosFiltrados = filtro === "Todos" 
-        ? pedidos 
-        : pedidos.filter(pedido => pedido.status === filtro);
-    
-    console.log("Pedidos filtrados:", pedidosFiltrados);
-
-    if (pedidosFiltrados.length === 0) {
-        lista.innerHTML = '<li class="vazio">Nenhum pedido encontrado</li>';
-        return;
-    }
-
-    // Adicionar pedidos à lista
-    pedidosFiltrados.forEach((pedido, index) => {
-        const li = document.createElement("li");
-        li.className = `pedido-item ${pedido.status.toLowerCase()}`;
-        li.innerHTML = `
-            <div class="pedido-info">
-                <span class="pedido-desc">${pedido.descricao}</span>
-                <span class="pedido-data">${pedido.data || ''}</span>
-            </div>
-            <div class="pedido-actions">
-                <span class="status ${pedido.status.toLowerCase()}">${pedido.status}</span>
-                <button class="btn-action" onclick="mudarStatus(${pedido.id}, 'Concluído')" title="Concluir">✓</button>
-                <button class="btn-action" onclick="mudarStatus(${pedido.id}, 'Arquivado')" title="Arquivar">📁</button>
-                <button class="btn-action btn-delete" onclick="excluirPedido(${pedido.id})" title="Excluir">🗑️</button>
-            </div>
-        `;
-        lista.appendChild(li);
-    });
-}
-
 function adicionarPedido() {
-    console.log("Tentando adicionar pedido...");
-    
     const input = document.getElementById("novoPedido");
     const descricao = input.value.trim();
     
@@ -122,25 +57,81 @@ function adicionarPedido() {
     
     const pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
     const novoPedido = {
-        id: Date.now(), // ID único baseado no timestamp
+        id: Date.now(),
         descricao: descricao,
         status: "Ativo",
-        data: new Date().toLocaleDateString('pt-BR'),
-        usuario: JSON.parse(localStorage.getItem("usuarioLogado")).email
+        data: new Date().toLocaleDateString('pt-BR')
     };
     
     pedidos.push(novoPedido);
     localStorage.setItem("pedidos", JSON.stringify(pedidos));
     
-    console.log("Novo pedido adicionado:", novoPedido);
-    
     input.value = "";
-    carregarPedidos(); // Recarregar a lista
+    carregarPedidos();
 }
 
-function mudarStatus(id, novoStatus) {
-    console.log(`Mudando status do pedido ${id} para ${novoStatus}`);
+function carregarPedidos() {
+    // Verificar login
+    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+    if (!usuario) {
+        window.location.href = "index.html";
+        return;
+    }
+
+    // Mostrar nome do usuário
+    const userInfo = document.getElementById("userInfo");
+    if (userInfo) {
+        userInfo.textContent = usuario.nome;
+    }
+
+    // Carregar e mostrar pedidos
+    const pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
+    const filtro = document.getElementById("filterStatus").value;
+    const lista = document.getElementById("listaPedidos");
     
+    if (!lista) return;
+    
+    lista.innerHTML = "";
+    
+    // Aplicar filtro
+    const pedidosFiltrados = filtro === "Todos" 
+        ? pedidos 
+        : pedidos.filter(pedido => pedido.status === filtro);
+    
+    if (pedidosFiltrados.length === 0) {
+        lista.innerHTML = '<li class="vazio">Nenhum pedido encontrado</li>';
+        return;
+    }
+
+    // Adicionar pedidos na lista
+    pedidosFiltrados.forEach(pedido => {
+        const li = document.createElement("li");
+        li.className = `pedido-item ${pedido.status.toLowerCase()}`;
+        li.innerHTML = `
+            <div class="pedido-content">
+                <span class="pedido-texto">${pedido.descricao}</span>
+                <small class="pedido-data">${pedido.data}</small>
+            </div>
+            <div class="pedido-controles">
+                <span class="status-badge ${pedido.status.toLowerCase()}">${pedido.status}</span>
+                <button onclick="concluirPedido(${pedido.id})" class="btn-success">✓</button>
+                <button onclick="arquivarPedido(${pedido.id})" class="btn-warning">📁</button>
+                <button onclick="excluirPedido(${pedido.id})" class="btn-danger">🗑️</button>
+            </div>
+        `;
+        lista.appendChild(li);
+    });
+}
+
+function concluirPedido(id) {
+    mudarStatusPedido(id, "Concluído");
+}
+
+function arquivarPedido(id) {
+    mudarStatusPedido(id, "Arquivado");
+}
+
+function mudarStatusPedido(id, novoStatus) {
     const pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
     const pedidoIndex = pedidos.findIndex(p => p.id === id);
     
@@ -152,59 +143,54 @@ function mudarStatus(id, novoStatus) {
 }
 
 function excluirPedido(id) {
-    if (!confirm("Tem certeza que deseja excluir este pedido?")) {
-        return;
-    }
-    
-    console.log(`Excluindo pedido ${id}`);
+    if (!confirm("Tem certeza que deseja excluir este pedido?")) return;
     
     const pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
     const novosPedidos = pedidos.filter(p => p.id !== id);
-    
     localStorage.setItem("pedidos", JSON.stringify(novosPedidos));
     carregarPedidos();
 }
 
 // ===== INICIALIZAÇÃO =====
+// Configurar eventos quando a página carregar
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("Página carregada, inicializando...");
-    
-    // Configurar Dashboard
-    const btnAdd = document.getElementById("btnAdd");
-    const filterStatus = document.getElementById("filterStatus");
-    const novoPedidoInput = document.getElementById("novoPedido");
-    
-    if (btnAdd) {
-        console.log("Botão adicionar encontrado");
-        btnAdd.addEventListener("click", adicionarPedido);
-    }
-    
-    if (novoPedidoInput) {
-        novoPedidoInput.addEventListener("keypress", function(e) {
-            if (e.key === 'Enter') {
-                adicionarPedido();
-            }
-        });
-    }
-    
-    if (filterStatus) {
-        console.log("Filtro encontrado");
-        filterStatus.addEventListener("change", carregarPedidos);
-    }
-    
-    // Verificar se estamos no dashboard e carregar pedidos
-    if (window.location.pathname.includes("dashboard.html") || 
-        window.location.pathname.includes("Dashboard.html")) {
-        console.log("Estamos no dashboard, carregando pedidos...");
+    // Configurar dashboard se estivermos nele
+    if (window.location.href.includes('dashboard.html')) {
+        const btnAdd = document.getElementById('btnAdd');
+        const filterSelect = document.getElementById('filterStatus');
+        
+        if (btnAdd) {
+            btnAdd.addEventListener('click', adicionarPedido);
+        }
+        
+        if (filterSelect) {
+            filterSelect.addEventListener('change', carregarPedidos);
+        }
+        
+        // Também permitir adicionar com Enter
+        const inputPedido = document.getElementById('novoPedido');
+        if (inputPedido) {
+            inputPedido.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    adicionarPedido();
+                }
+            });
+        }
+        
+        // Carregar pedidos iniciais
         carregarPedidos();
     }
     
-    // Verificar login em páginas protegidas
-    const usuarioLogado = localStorage.getItem("usuarioLogado");
-    const paginasProtegidas = ["dashboard.html", "Dashboard.html", "sobre.html", "ajuda.html"];
+    // Verificar se usuário está logado em páginas protegidas
+    const paginasProtegidas = ['dashboard.html', 'sobre.html', 'ajuda.html'];
     const paginaAtual = window.location.pathname;
+    const usuarioLogado = localStorage.getItem('usuarioLogado');
     
-    if (paginasProtegidas.some(pagina => paginaAtual.includes(pagina)) && !usuarioLogado) {
-        window.location.href = "index.html";
+    const estaEmPaginaProtegida = paginasProtegidas.some(pagina => 
+        paginaAtual.includes(pagina)
+    );
+    
+    if (estaEmPaginaProtegida && !usuarioLogado) {
+        window.location.href = 'index.html';
     }
 });
