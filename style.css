@@ -235,7 +235,7 @@ nav {
     }
 }
 
-/* Estilos específicos para a lista de pedidos */
+/* ESTILOS PARA A LISTA DE PEDIDOS */
 .pedido-item {
     display: flex;
     justify-content: space-between;
@@ -246,12 +246,6 @@ nav {
     border-radius: 8px;
     border-left: 4px solid #0a4c9a;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease;
-}
-
-.pedido-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 .pedido-item.ativo {
@@ -260,93 +254,71 @@ nav {
 
 .pedido-item.concluído {
     border-left-color: #6c757d;
-    opacity: 0.8;
 }
 
 .pedido-item.arquivado {
     border-left-color: #ffc107;
 }
 
-.pedido-info {
+.pedido-content {
     flex: 1;
 }
 
-.pedido-desc {
+.pedido-texto {
     display: block;
     font-weight: 500;
-    color: #333;
     margin-bottom: 5px;
 }
 
 .pedido-data {
-    font-size: 12px;
     color: #666;
+    font-size: 12px;
 }
 
-.pedido-actions {
+.pedido-controles {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.status {
-    padding: 4px 12px;
-    border-radius: 20px;
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
     font-size: 12px;
     font-weight: bold;
-    text-transform: uppercase;
 }
 
-.status.ativo {
+.status-badge.ativo {
     background: #d4edda;
     color: #155724;
 }
 
-.status.concluído {
+.status-badge.concluído {
     background: #e2e3e5;
     color: #383d41;
 }
 
-.status.arquivado {
+.status-badge.arquivado {
     background: #fff3cd;
     color: #856404;
 }
 
-.btn-action {
+.btn-success, .btn-warning, .btn-danger {
     background: none;
     border: none;
     cursor: pointer;
     padding: 5px;
     border-radius: 4px;
-    transition: background 0.2s ease;
     font-size: 14px;
 }
 
-.btn-action:hover {
-    background: #f8f9fa;
-}
-
-.btn-delete:hover {
-    background: #dc3545;
-    color: white;
-}
+.btn-success:hover { background: #28a745; color: white; }
+.btn-warning:hover { background: #ffc107; color: black; }
+.btn-danger:hover { background: #dc3545; color: white; }
 
 .vazio {
     text-align: center;
-    padding: 40px;
+    padding: 20px;
     color: #666;
     font-style: italic;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .pedido-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    
-    .pedido-actions {
-        align-self: flex-end;
-    }
 }
