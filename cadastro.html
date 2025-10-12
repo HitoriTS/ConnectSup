@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>ConnectSup - Cadastro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>ConnectSup</h1>
+  </header>
+
+  <main class="container">
+    <h2>Criar Conta</h2>
+
+    <input type="text" id="cadNome" placeholder="Nome completo" required>
+    <input type="email" id="cadEmail" placeholder="E-mail" required>
+    <input type="password" id="cadSenha" placeholder="Senha" required>
+
+    <select id="cadPlano">
+      <option>Plano Básico</option>
+      <option>Plano Profissional</option>
+      <option>Plano Empresarial</option>
+    </select>
+
+    <button onclick="cadastrar()">Criar conta</button>
+
+    <p>Já tem conta? <a href="index.html">Entrar</a></p>
+  </main>
+</body>
+<script src="script.js"></script>
+</html>
