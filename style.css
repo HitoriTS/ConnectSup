@@ -113,7 +113,29 @@ header h1 {
     header h1 {
         font-size: 2.5rem;
     }
-    
+
+    /* FORÇA centralização */
+body {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 100vh !important;
+}
+
+.container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 400px !important;
+}
+
+.container input,
+.container select {
+    display: block !important;
+    width: 100% !important;
+    margin: 10px 0 !important;
+}
     .container h2 {
         font-size: 1.7rem;
     }
