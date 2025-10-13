@@ -7,24 +7,37 @@
 
 body {
     font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== PÁGINAS DE LOGIN/CADASTRO ===== */
+body.index-page,
+body.cadastro-page {
     background: linear-gradient(135deg, #0a5cb5, #0c72d1);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-}
-
-/* ===== PÁGINAS DE LOGIN/CADASTRO ===== */
-/* Só aplica centralização para login e cadastro */
-body.login-page,
-body.cadastro-page {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
+    align-items: center;
+    justify-content: center;
     padding: 20px;
 }
 
+/* Header para login/cadastro */
+.login-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.login-header h1 {
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
 /* Container para login/cadastro */
-.container {
+.login-container {
     background: white;
     padding: 50px;
     border-radius: 20px;
@@ -34,15 +47,15 @@ body.cadastro-page {
     text-align: center;
 }
 
-.container h2 {
+.login-container h2 {
     color: #0a3c80;
     font-size: 2rem;
     margin-bottom: 40px;
     font-weight: 600;
 }
 
-.container input,
-.container select {
+.login-container input,
+.login-container select {
     width: 100%;
     padding: 15px;
     margin: 12px 0;
@@ -50,17 +63,16 @@ body.cadastro-page {
     border-radius: 10px;
     font-size: 1.1rem;
     background: #f8f9fa;
-    display: block;
 }
 
-.container input:focus,
-.container select:focus {
+.login-container input:focus,
+.login-container select:focus {
     outline: none;
     border-color: #0a4c9a;
     background: white;
 }
 
-.container button {
+.login-container button {
     width: 100%;
     background: #0a4c9a;
     color: white;
@@ -74,27 +86,34 @@ body.cadastro-page {
     transition: background 0.3s;
 }
 
-.container button:hover {
+.login-container button:hover {
     background: #0c72d1;
 }
 
-.container p {
+.login-container p {
     margin-top: 25px;
     color: #666;
     font-size: 1rem;
 }
 
-.container a {
+.login-container a {
     color: #0a4c9a;
     text-decoration: none;
     font-weight: bold;
 }
 
-.container a:hover {
+.login-container a:hover {
     text-decoration: underline;
 }
 
-/* ===== DASHBOARD ===== */
+/* ===== DASHBOARD E PÁGINAS INTERNAS ===== */
+body.dashboard-page {
+    background: linear-gradient(135deg, #0a5cb5, #0c72d1);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
 /* Navigation */
 nav {
     background: white;
@@ -108,6 +127,7 @@ nav {
 .nav-left h1 {
     color: #0a4c9a;
     margin: 0;
+    font-size: 1.8rem;
 }
 
 .nav-right {
@@ -116,20 +136,30 @@ nav {
     gap: 20px;
 }
 
+.nav-right span {
+    color: #333;
+    font-weight: 500;
+}
+
 .nav-right a {
     color: #0a4c9a;
     text-decoration: none;
     font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background 0.3s;
 }
 
 .nav-right a:hover {
-    text-decoration: underline;
+    background: #f8f9fa;
+    text-decoration: none;
 }
 
 /* Dashboard Content */
 .content {
-    padding: 20px;
-    flex: 1;
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .panel {
@@ -137,70 +167,99 @@ nav {
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    max-width: 800px;
-    margin: 0 auto;
 }
 
 .panel h2 {
     color: #0a3c80;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
 }
 
+/* Formulário de pedidos */
 .pedido-form {
     display: flex;
-    gap: 10px;
-    margin: 20px 0;
+    gap: 12px;
+    margin: 25px 0;
+    align-items: center;
 }
 
 .pedido-form input {
     flex: 1;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+    padding: 12px 15px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
     font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.pedido-form input:focus {
+    outline: none;
+    border-color: #0a4c9a;
 }
 
 .pedido-form button {
     background: #0a4c9a;
     color: white;
     border: none;
-    padding: 12px 20px;
-    border-radius: 6px;
+    padding: 12px 25px;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
+    font-size: 1rem;
+    transition: background 0.3s;
+    white-space: nowrap;
 }
 
+.pedido-form button:hover {
+    background: #0c72d1;
+}
+
+/* Filtros */
 .filters {
     margin: 20px 0;
+    padding: 15px 0;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .filters label {
     font-weight: 500;
     color: #333;
+    font-size: 1rem;
 }
 
 .filters select {
-    padding: 8px;
-    border: 1px solid #ddd;
+    padding: 8px 12px;
+    border: 2px solid #e1e5e9;
     border-radius: 6px;
     margin-left: 10px;
+    font-size: 1rem;
 }
 
 /* Lista de Pedidos */
 .list {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .pedido-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
-    margin: 10px 0;
+    padding: 18px 20px;
+    margin: 12px 0;
     background: #f8f9fa;
     border-radius: 8px;
-    border-left: 4px solid #0a4c9a;
+    border-left: 5px solid #0a4c9a;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.pedido-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .pedido-item.ativo {
@@ -215,39 +274,120 @@ nav {
     border-left-color: #ffc107;
 }
 
-.pedido-item button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-left: 5px;
-    font-size: 16px;
+.pedido-content {
+    flex: 1;
+}
+
+.pedido-texto {
+    display: block;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.pedido-data {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.pedido-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .status {
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
     font-weight: bold;
+    text-transform: uppercase;
+}
+
+.status.ativo {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status.concluído {
+    background: #e2e3e5;
+    color: #383d41;
+}
+
+.status.arquivado {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.btn-action {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background 0.3s;
+    font-size: 1.1rem;
+}
+
+.btn-action:hover {
+    background: #e9ecef;
+}
+
+.vazio {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+    font-style: italic;
+    font-size: 1.1rem;
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
     nav {
+        padding: 15px 20px;
         flex-direction: column;
-        gap: 10px;
+        gap: 15px;
+    }
+    
+    .nav-right {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .content {
+        padding: 20px 15px;
+    }
+    
+    .panel {
+        padding: 20px;
     }
     
     .pedido-form {
         flex-direction: column;
+        gap: 10px;
+    }
+    
+    .pedido-form input,
+    .pedido-form button {
+        width: 100%;
     }
     
     .pedido-item {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        gap: 15px;
     }
     
-    .container {
+    .pedido-actions {
+        align-self: flex-end;
+    }
+    
+    .login-container {
         padding: 30px 20px;
+    }
+    
+    .login-header h1 {
+        font-size: 2.5rem;
     }
 }
