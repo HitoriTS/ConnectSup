@@ -14,29 +14,15 @@
   <main class="container">
     <h2>Criar Conta</h2>
     
-    <div class="form-group">
-      <label for="cadNome">Nome completo</label>
-      <input type="text" id="cadNome" placeholder="Seu nome completo" required>
-    </div>
+    <input type="text" id="cadNome" placeholder="Nome completo" required>
+    <input type="email" id="cadEmail" placeholder="E-mail" required>
+    <input type="password" id="cadSenha" placeholder="Senha" required>
     
-    <div class="form-group">
-      <label for="cadEmail">E-mail</label>
-      <input type="email" id="cadEmail" placeholder="seu@email.com" required>
-    </div>
-    
-    <div class="form-group">
-      <label for="cadSenha">Senha</label>
-      <input type="password" id="cadSenha" placeholder="Crie uma senha" required>
-    </div>
-
-    <div class="form-group">
-      <label for="cadPlano">Plano</label>
-      <select id="cadPlano">
-        <option>Plano Básico</option>
-        <option>Plano Profissional</option>
-        <option>Plano Empresarial</option>
-      </select>
-    </div>
+    <select id="cadPlano">
+      <option>Plano Básico</option>
+      <option>Plano Profissional</option>
+      <option>Plano Empresarial</option>
+    </select>
 
     <button onclick="cadastrar()">Criar conta</button>
 
