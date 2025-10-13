@@ -7,18 +7,14 @@
 
 body {
     font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #0a5cb5, #0c72d1);
+    min-height: 100vh;
     margin: 0;
     padding: 0;
 }
 
-/* ===== LOGIN E CADASTRO ===== */
-body {
-    background: linear-gradient(135deg, #0a5cb5, #0c72d1) !important;
-    min-height: 100vh;
-}
-
-/* Só aplica centralização para login e cadastro */
-body:not(.dashboard-body) {
+/* ===== LOGIN E CADASTRO - CENTRALIZADOS ===== */
+.login-page {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,7 +39,7 @@ body:not(.dashboard-body) {
     padding: 50px;
     border-radius: 20px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-    width: 90%;
+    width: 100%;
     max-width: 450px;
     text-align: center;
 }
@@ -64,7 +60,6 @@ body:not(.dashboard-body) {
     border-radius: 10px;
     font-size: 1.1rem;
     background: #f8f9fa;
-    display: block;
 }
 
 .login-container input:focus,
@@ -108,13 +103,7 @@ body:not(.dashboard-body) {
     text-decoration: underline;
 }
 
-/* ===== DASHBOARD ===== */
-.dashboard-body {
-    background: linear-gradient(135deg, #0a5cb5, #0c72d1);
-    min-height: 100vh;
-    display: block !important;
-}
-
+/* ===== DASHBOARD - LAYOUT ORIGINAL ===== */
 /* Navigation */
 nav {
     background: white;
@@ -128,7 +117,6 @@ nav {
 .nav-left h1 {
     color: #0a4c9a;
     margin: 0;
-    font-size: 1.8rem;
 }
 
 .nav-right {
@@ -137,30 +125,20 @@ nav {
     gap: 20px;
 }
 
-.nav-right span {
-    color: #333;
-    font-weight: 500;
-}
-
 .nav-right a {
     color: #0a4c9a;
     text-decoration: none;
     font-weight: 500;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: background 0.3s;
 }
 
 .nav-right a:hover {
-    background: #f8f9fa;
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 /* Dashboard Content */
 .content {
-    padding: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: 20px;
+    flex: 1;
 }
 
 .panel {
@@ -168,99 +146,74 @@ nav {
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .panel h2 {
     color: #0a3c80;
-    margin-bottom: 25px;
-    font-size: 1.8rem;
-    border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 
-/* Formulário de pedidos */
 .pedido-form {
     display: flex;
-    gap: 12px;
-    margin: 25px 0;
-    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
 }
 
 .pedido-form input {
     flex: 1;
-    padding: 12px 15px;
-    border: 2px solid #e1e5e9;
-    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
     font-size: 1rem;
-    transition: border-color 0.3s;
-}
-
-.pedido-form input:focus {
-    outline: none;
-    border-color: #0a4c9a;
 }
 
 .pedido-form button {
     background: #0a4c9a;
     color: white;
     border: none;
-    padding: 12px 25px;
-    border-radius: 8px;
+    padding: 12px 20px;
+    border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
-    font-size: 1rem;
-    transition: background 0.3s;
-    white-space: nowrap;
 }
 
 .pedido-form button:hover {
     background: #0c72d1;
 }
 
-/* Filtros */
 .filters {
     margin: 20px 0;
-    padding: 15px 0;
-    border-top: 1px solid #f0f0f0;
-    border-bottom: 1px solid #f0f0f0;
 }
 
 .filters label {
     font-weight: 500;
     color: #333;
-    font-size: 1rem;
 }
 
 .filters select {
-    padding: 8px 12px;
-    border: 2px solid #e1e5e9;
+    padding: 8px;
+    border: 1px solid #ddd;
     border-radius: 6px;
     margin-left: 10px;
-    font-size: 1rem;
 }
 
 /* Lista de Pedidos */
 .list {
     list-style: none;
     padding: 0;
-    margin: 0;
 }
 
 .pedido-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 20px;
-    margin: 12px 0;
+    padding: 15px;
+    margin: 10px 0;
     background: #f8f9fa;
     border-radius: 8px;
-    border-left: 5px solid #0a4c9a;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.pedido-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-left: 4px solid #0a4c9a;
 }
 
 .pedido-item.ativo {
@@ -275,70 +228,46 @@ nav {
     border-left-color: #ffc107;
 }
 
-.pedido-content {
-    flex: 1;
-}
-
-.pedido-texto {
-    display: block;
-    font-weight: 500;
-    color: #333;
-    margin-bottom: 5px;
-    font-size: 1.1rem;
-}
-
-.pedido-data {
-    font-size: 0.9rem;
-    color: #666;
-}
-
-.pedido-actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.status {
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.status.ativo {
-    background: #d4edda;
-    color: #155724;
-}
-
-.status.concluído {
-    background: #e2e3e5;
-    color: #383d41;
-}
-
-.status.arquivado {
-    background: #fff3cd;
-    color: #856404;
-}
-
-.btn-action {
+.pedido-item button {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 8px;
-    border-radius: 4px;
-    transition: background 0.3s;
-    font-size: 1.1rem;
+    margin-left: 5px;
+    font-size: 16px;
 }
 
-.btn-action:hover {
-    background: #e9ecef;
+.status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 .vazio {
     text-align: center;
-    padding: 40px 20px;
+    padding: 40px;
     color: #666;
     font-style: italic;
-    font-size: 1.1rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .pedido-form {
+        flex-direction: column;
+    }
+    
+    .pedido-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .login-container {
+        padding: 30px 20px;
+    }
 }
