@@ -1,47 +1,36 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>ConnectSup - Dashboard</title>
-<link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<nav>
-  <div class="nav-left">
-    <h1>ConnectSup</h1>
-  </div>
-  <div class="nav-right">
-    <span id="userInfo"></span>
-    <a href="sobre.html">Sobre Nós</a>
-    <a href="ajuda.html">Ajuda</a>
-    <a href="#" onclick="logout()">Sair</a>
-  </div>
-</nav>
-
-<main class="content">
-  <section class="panel">
-    <h2>Meus Pedidos</h2>
-
-    <div class="pedido-form">
-<input type="text" id="novoPedido" placeholder="Ex: 20 vigas eucalipto tratado 6x12cm - 5m (entrega dd/mm)" />
+<body class="dashboard-page">
+  <!-- MANTENHA O CÓDIGO ORIGINAL DO DASHBOARD QUE VOCÊ JÁ TEM -->
+  <nav>
+    <div class="nav-left">
+      <h1>ConnectSup</h1>
     </div>
-
-    <div class="filters">
-      <label>Mostrar:
-        <select id="filterStatus">
-          <option value="Todos">Todos</option>
-          <option value="Ativo">Ativos</option>
-          <option value="Concluído">Concluídos</option>
-          <option value="Arquivado">Arquivados</option>
-        </select>
-      </label>
+    <div class="nav-right">
+      <span id="userInfo"></span>
+      <a href="sobre.html">Sobre Nós</a>
+      <a href="ajuda.html">Ajuda</a>
+      <a href="#" onclick="logout()">Sair</a>
     </div>
+  </nav>
 
-    <ul id="listaPedidos" class="list"></ul>
-  </section>
-</main>
-
-<script src="script.js"></script>
+  <main class="content">
+    <section class="panel">
+      <h2>Meus Pedidos</h2>
+      <div class="pedido-form">
+        <input type="text" id="novoPedido" placeholder="Ex: 20 vigas eucalipto tratado 6x12cm - 5m (entrega dd/mm)" />
+        <button id="btnAdd">Adicionar</button>
+      </div>
+      <div class="filters">
+        <label>Mostrar:
+          <select id="filterStatus">
+            <option value="Todos">Todos</option>
+            <option value="Ativo">Ativos</option>
+            <option value="Concluído">Concluídos</option>
+            <option value="Arquivado">Arquivados</option>
+          </select>
+        </label>
+      </div>
+      <ul id="listaPedidos" class="list"></ul>
+    </section>
+  </main>
+  <script src="script.js"></script>
 </body>
-</html>
