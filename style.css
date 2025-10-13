@@ -1,4 +1,4 @@
-/* Reset completo */
+/* ===== ESTILOS GERAIS ===== */
 * {
     margin: 0;
     padding: 0;
@@ -11,25 +11,19 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+}
+
+/* ===== PÁGINAS DE LOGIN/CADASTRO ===== */
+/* Só aplica centralização para login e cadastro */
+body.login-page,
+body.cadastro-page {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
     padding: 20px;
 }
 
-/* Header centralizado */
-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-header h1 {
-    color: white;
-    font-size: 3rem;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}
-
-/* Container principal */
+/* Container para login/cadastro */
 .container {
     background: white;
     padding: 50px;
@@ -40,7 +34,6 @@ header h1 {
     text-align: center;
 }
 
-/* Título do formulário */
 .container h2 {
     color: #0a3c80;
     font-size: 2rem;
@@ -48,7 +41,6 @@ header h1 {
     font-weight: 600;
 }
 
-/* Campos do formulário */
 .container input,
 .container select {
     width: 100%;
@@ -68,7 +60,6 @@ header h1 {
     background: white;
 }
 
-/* Botão */
 .container button {
     width: 100%;
     background: #0a4c9a;
@@ -87,7 +78,6 @@ header h1 {
     background: #0c72d1;
 }
 
-/* Link */
 .container p {
     margin-top: 25px;
     color: #666;
@@ -104,39 +94,160 @@ header h1 {
     text-decoration: underline;
 }
 
-/* Responsivo */
-@media (max-width: 500px) {
-    .container {
-        padding: 30px 25px;
+/* ===== DASHBOARD ===== */
+/* Navigation */
+nav {
+    background: white;
+    padding: 15px 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-left h1 {
+    color: #0a4c9a;
+    margin: 0;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-right a {
+    color: #0a4c9a;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav-right a:hover {
+    text-decoration: underline;
+}
+
+/* Dashboard Content */
+.content {
+    padding: 20px;
+    flex: 1;
+}
+
+.panel {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.panel h2 {
+    color: #0a3c80;
+    margin-bottom: 20px;
+}
+
+.pedido-form {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.pedido-form input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.pedido-form button {
+    background: #0a4c9a;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.filters {
+    margin: 20px 0;
+}
+
+.filters label {
+    font-weight: 500;
+    color: #333;
+}
+
+.filters select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-left: 10px;
+}
+
+/* Lista de Pedidos */
+.list {
+    list-style: none;
+    padding: 0;
+}
+
+.pedido-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin: 10px 0;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #0a4c9a;
+}
+
+.pedido-item.ativo {
+    border-left-color: #28a745;
+}
+
+.pedido-item.concluído {
+    border-left-color: #6c757d;
+}
+
+.pedido-item.arquivado {
+    border-left-color: #ffc107;
+}
+
+.pedido-item button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 16px;
+}
+
+.status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 10px;
     }
     
-    header h1 {
-        font-size: 2.5rem;
+    .pedido-form {
+        flex-direction: column;
     }
-
-    /* FORÇA centralização */
-body {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    min-height: 100vh !important;
-}
-
-.container {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    width: 100% !important;
-    max-width: 400px !important;
-}
-
-.container input,
-.container select {
-    display: block !important;
-    width: 100% !important;
-    margin: 10px 0 !important;
-}
-    .container h2 {
-        font-size: 1.7rem;
+    
+    .pedido-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .container {
+        padding: 30px 20px;
     }
 }
